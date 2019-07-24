@@ -247,21 +247,18 @@ def create_payment_intent(amount, source_id, payment_method_id, customer_id = ni
                           metadata = {}, currency = 'usd', shipping = nil, return_url = nil, confirm = false)
   return Stripe::PaymentIntent.create(
     :amount => amount,
-    :currency => currency || 'usd',
+    :currency => currency || 'eur',
     :customer => customer_id,
     :source => source_id,
     :payment_method => payment_method_id,
     :payment_method_types => ['card'],
-    :description => "Example PaymentIntent",
-    :shipping => shipping,
+    :description => "GT2i PaymentIntent",
     :return_url => return_url,
     :confirm => confirm,
     :confirmation_method => confirm ? "manual" : "automatic",
     :use_stripe_sdk => confirm ? true : nil,
     :capture_method => ENV['CAPTURE_METHOD'] == "manual" ? "manual" : "automatic",
-    :metadata => {
-      :order_id => '5278735C-1F40-407D-933A-286E463E72D8',
-    }.merge(metadata || {}),
+    :metadata => metadata,
   )
 end
 
