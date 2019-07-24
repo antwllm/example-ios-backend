@@ -55,11 +55,11 @@ post '/capture_payment' do
         payload[:amount],
         payload[:source],
         payload[:payment_method],
-        payload[:customer_id] || @customer.id,
+        'cus_FUOBNJ5nsHoJEP',
         payload[:metadata],
         'eur',
-        payload[:shipping],
-        payload[:return_url],
+        '',
+        payload[:return_url] || 'gt2i://stripe-redirect',
       )
     end
   rescue Stripe::StripeError => e
