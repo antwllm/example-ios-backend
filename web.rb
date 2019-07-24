@@ -57,7 +57,7 @@ post '/capture_payment' do
         payload[:payment_method],
         payload[:customer_id] || @customer.id,
         payload[:metadata],
-        'usd',
+        'eur',
         payload[:shipping],
         payload[:return_url],
       )
