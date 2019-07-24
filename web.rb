@@ -57,7 +57,9 @@ post '/capture_payment' do
         payload[:payment_method],
         payload[:customer_id] || @customer.id,
         payload[:metadata],
-        'eur'
+        'usd',
+        payload[:shipping],
+        payload[:return_url],
       )
     end
   rescue Stripe::StripeError => e
