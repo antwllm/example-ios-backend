@@ -20,11 +20,11 @@ get '/' do
   return log_info("Great, your backend is set up. Now you can configure the Stripe example apps to point here.")
 end
 
-post '/ephemeral_keys' do
+post '/ephemeral_keys/customer/:customer' do
   authenticate!
   begin
     key = Stripe::EphemeralKey.create(
-      {customer: @customer.id},
+      {customer:  params["customer"]},
       {stripe_version: params["api_version"]}
     )
   rescue Stripe::StripeError => e
@@ -57,7 +57,7 @@ post '/capture_payment' do
         payload[:payment_method],
         payload[:customer_id] || @customer.id,
         payload[:metadata],
-        'usd',
+        'eur',
         payload[:shipping],
         payload[:return_url],
       )
