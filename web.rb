@@ -55,7 +55,7 @@ post '/capture_payment' do
         payload[:amount],
         payload[:source],
         payload[:payment_method],
-        'cus_FUOBNJ5nsHoJEP',
+        payload[:customer],
         payload[:metadata],
         'eur',
         '',
